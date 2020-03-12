@@ -22,7 +22,26 @@ namespace PurchaseRewards
                 transaction.TransactionAmount = decimal.TryParse(transactionAmountStringNoDollarSign, out parsedTransactionAmount) ? parsedTransactionAmount : parsedTransactionAmount;
                 PointsProcessor pointsProcessor = new PointsProcessor();
                 transaction.TransactionPoints = pointsProcessor.ProcessPoints(transaction.TransactionAmount);
-                transactionList.Add(transaction);
+                bool IsError = false;
+                if (parsedCustomerId == 0)
+                {
+                    Console.WriteLine("There was an error processing the customer Id of "+ transactionStringArray[0]);
+                    IsError = true;
+                }
+                if (transaction.TransactionDate == DateTime.MinValue)
+                {
+                    Console.WriteLine("There was an error processing the transaction date of " + transactionStringArray[1]);
+                    IsError = true;
+                }
+                if (parsedTransactionAmount == 0)
+                {
+                    Console.WriteLine("There was an error processing the transaction amount of " + transactionStringArray[2]);
+                    IsError = true;
+                }
+                if (!IsError)
+                {
+                    transactionList.Add(transaction);
+                }   
             }
         }
 
