@@ -49,7 +49,7 @@ namespace PurchaseRewards
                             foreach (var month in months)
                             {
                                 var totalPoints = month.Select(x => x.TransactionPoints).ToList().Sum();
-                                Console.WriteLine("Reward points for Customer " + group.Key + " in " + month.Select(x => x.TransactionDate.ToString("MMMM")).First() + ", "+ month.Select(x => x.TransactionDate.Year).First() + " = " + totalPoints);
+                                Console.WriteLine("Reward points for Customer " + group.Key + " in " + month.Select(x => x.TransactionDate.ToString("MMMM")).First() + " "+ month.Select(x => x.TransactionDate.Year).First() + " is " + totalPoints + " points");
                             }
                         }
 
